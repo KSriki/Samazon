@@ -15,7 +15,7 @@ import java.util.Date;
 public class Samitem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
 	private int itemid;
 
 	private String list;
@@ -27,15 +27,15 @@ public class Samitem implements Serializable {
 
 	private int quantity;
 
-	//bi-directional many-to-one association to Samuser
-	@ManyToOne
-	@JoinColumn(name="SAMID")
-	private Samuser samuser;
-
 	//bi-directional many-to-one association to Product
 	@ManyToOne
 	@JoinColumn(name="PRODUCTID")
 	private Product product;
+
+	//bi-directional many-to-one association to Samuser
+	@ManyToOne
+	@JoinColumn(name="SAMID")
+	private Samuser samuser;
 
 	public Samitem() {
 	}
@@ -80,20 +80,20 @@ public class Samitem implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public Samuser getSamuser() {
-		return this.samuser;
-	}
-
-	public void setSamuser(Samuser samuser) {
-		this.samuser = samuser;
-	}
-
 	public Product getProduct() {
 		return this.product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Samuser getSamuser() {
+		return this.samuser;
+	}
+
+	public void setSamuser(Samuser samuser) {
+		this.samuser = samuser;
 	}
 
 }

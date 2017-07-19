@@ -15,8 +15,10 @@ import java.util.List;
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
 	private int productid;
+
+	private String image;
 
 	private float price;
 
@@ -41,6 +43,14 @@ public class Product implements Serializable {
 
 	public void setProductid(int productid) {
 		this.productid = productid;
+	}
+
+	public String getImage() {
+		return this.image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public float getPrice() {
