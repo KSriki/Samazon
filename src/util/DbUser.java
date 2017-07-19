@@ -4,6 +4,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import model.Samuser;
+
 
 /**
  * @author djw
@@ -16,48 +18,33 @@ public class DbUser {
  * @param userID - primary key from database. Must be type long
  * @return Bhuser
  */
-	public static Samuser getUser(long userID)
+	public static Samuser getUser(int userID)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		SamUser user = em.find(Bhuser.class, userID);
+		Samuser user = em.find(Samuser.class, userID);
 		return user;		
 	}
 	
-	public static void insert(Bhuser bhUser) {
+	public static void insert(Samuser sUser) {
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
-		System.out.println("DbBullhorn: begin transaction");
+		//System.out.println("DbBullhorn: begin transaction");
 		try {
 			trans.begin();
-			em.persist(bhUser);
+			em.persist(sUser);
 			em.flush();
-			System.out.println("DbBullhorn: commit transaction");
+			//System.out.println("DbBullhorn: commit transaction");
 			trans.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("DbBullhorn: rollback transaction");
+			//System.out.println("DbBullhorn: rollback transaction");
 			trans.rollback();
 		} finally {
-			System.out.println("DbBullhorn: close em");
+			//System.out.println("DbBullhorn: close em");
 			em.close();
 		}
 	}
-	/**
-	 * Gets a Gravatar URL given the email and size
-	 * In accordance with Gravatar's requirements the email will be hashed
-	 * with the MD5 hash and returned as part of the url
-	 * The url will also include the s=xx attribute to request a Gravatar of a
-	 * particular size.
-	 * References: <a href="http://www.gravatar.com">http://www.gravatar.com</>
-	 * @param email - email of the user who's gravatar you want
-	 * @param size - indicates pixel height of the image to be returned. Height and Width are same.
-	 * @return - the gravatar URL. You can test it in a browser.
-	 */
-	public static String getGravatarURL(String email, Integer size){
-		String url = "http://www.gravatar.com/avatar/" +
-				MD5Util.md5Hex(email) + "?s=" + size.toString();
-		return url;
-	}
+	
 	/**
 	 * Updates the data in a Bhuser
 	 * Pass the method a Bhuser with all the values set to your liking and 
@@ -67,12 +54,12 @@ public class DbUser {
 	 * it won't tell you. Sounds like something needs to be added in the future. Hmmm.
 	 * @param bhUser
 	 */
-	public static void update(Bhuser bhUser) {
+	public static void update(Samuser sUser) {
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		try {
 			trans.begin();
-			em.merge(bhUser);
+			em.merge(sUser);
 			em.flush();
 			trans.commit();
 		} catch (Exception e) {
@@ -91,12 +78,12 @@ public class DbUser {
 	 * will take care of that.Gives no feedback.
 	 * @param bhUser that you never want to see again
 	 */
-	public static void delete(Bhuser bhUser) {
+	public static void delete(Samuser sUser) {
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		try {
 			trans.begin();
-			em.remove(em.merge(bhUser));
+			em.remove(em.merge(sUser));
 			trans.commit();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -116,14 +103,14 @@ public class DbUser {
 	 * @param email
 	 * @return Bhuser with that unique email address
 	 */
-	public static Bhuser getUserByEmail(String email)
+	public static Samuser getUserByEmail(String email)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "Select u from Bhuser u "
+		String qString = "Select u from Samuser u "
 				+ "where u.useremail = :useremail";
-		TypedQuery<Bhuser> q = em.createQuery(qString, Bhuser.class);
+		TypedQuery<Samuser> q = em.createQuery(qString, Samuser.class);
 		q.setParameter("useremail", email);
-		Bhuser user = null;
+		Samuser user = null;
 		try {
 			user = q.getSingleResult();
 		}catch (NoResultException e){
@@ -145,10 +132,10 @@ public class DbUser {
 	 * @param user of type Bhuser
 	 * @return true or false indicating the user exists or doesn't
 	 */
-	public static boolean isValidUser(Bhuser user)
+	public static boolean isValidUser(Samuser user)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "Select count(b.bhuserid) from Bhuser b "
+		String qString = "Select count(b.samid) from Samuser b "
 			+ "where b.useremail = :useremail and b.userpassword = :userpass";
 		TypedQuery<Long> q = em.createQuery(qString,Long.class);
 		boolean result = false;
@@ -175,7 +162,7 @@ public class DbUser {
 	public static boolean isValidUser(String email, String password)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "Select count(b.bhuserid) from Bhuser b "
+		String qString = "Select count(b.samid) from Samuser b "
 			+ "where b.useremail = :useremail and b.userpassword = :userpass";
 		TypedQuery<Long> q = em.createQuery(qString,Long.class);
 		boolean result = false;
