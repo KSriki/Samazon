@@ -40,67 +40,41 @@ footer {
 		</div>
 	</div>
 
-	<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Logo</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Products</a></li>
-				<li><a href="#">Deals</a></li>
-				<li><a href="#">Stores</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Your Account</a></li>
-				<li><a href="#"><span
-						class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
+	<jsp:include page="navbar.jsp"/>
 
-	<div class="container">
 
+	<div class="container" >
 		<c:forEach var="product" items="${products}">
-			<div class="col-md-4">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
+
+			<div class="col-md-4" >
+				<div class="panel panel-primary" >
+					<div class="panel-heading " >
 						<c:out value="${product.productname}" />
 					</div>
-					<div class="panel-body">
-						<img src="${product.image }" class="img-responsive"
-							style="width: 100%" alt="Image">
-					</div>
-					<div class="panel-footer">
+					<div class="panel-body" >
+						
+						<a href=""><img src="${product.image }" class="img-responsive" alt="Image"></a>
 
 						<div class="col-md-4 inner">
 							<c:out value="${product.productdesc}" />
 						</div>
 						<div class="col-md-4 inner">
-							<c:out value="${product.price}" />
+							$<c:out value="${product.price}" />
 						</div>
 						<div class="col-md-4 inner">
-							<c:out value="${product.productcount}" />
+							<c:out value="${product.productcount}" /> Count
 						</div>
 
+
+
 					</div>
-
-
 				</div>
+
 			</div>
 
 		</c:forEach>
-
 	</div>
+
 
 	<footer class="container-fluid text-center">
 	<p>Online Store Copyright</p>

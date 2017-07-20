@@ -10,7 +10,7 @@ import java.util.List;
  * The persistent class for the samuser database table.
  * 
  */
-@Entity
+@Entity @Table(name = "samuser")
 @NamedQuery(name="Samuser.findAll", query="SELECT s FROM Samuser s")
 public class Samuser implements Serializable {
 	private static final long serialVersionUID = 1L;
