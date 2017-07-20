@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import model.Product;
+import model.Samuser;
 
 
 public class DbProduct {
@@ -72,6 +73,14 @@ public class DbProduct {
 			}
 		return products;
 	}
+	
+	public static Product getProduct(int pID)
+	{
+		EntityManager em = DbUtil.getEmFactory().createEntityManager();
+		Product prod = em.find(Product.class, pID);
+		return prod;		
+	}
+	
 	/*
 	public static List<Product> postsofUser(long userid)
 	{

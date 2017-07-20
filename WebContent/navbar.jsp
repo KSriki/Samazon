@@ -27,7 +27,7 @@
 						<c:if test="${user != null }">
 							<c:out value="${user.username}" />
 						</c:if> <c:if test="${user == null }">
-							Your Account
+							<a href="login.jsp"> Your Account </a>
 				</c:if> </a></li>
 				<li><a href="#"><span
 						class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>

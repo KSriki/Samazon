@@ -52,9 +52,7 @@ footer {
 						<c:out value="${product.productname}" />
 					</div>
 					<div class="panel-body" >
-						
-						<a href=""><img src="${product.image }" class="img-responsive" alt="Image"></a>
-
+						<a href="ProductServlet?productid=${product.productid}"><img src="${product.image}" class="img-responsive" alt="Image"></a>
 						<div class="col-md-4 inner">
 							<c:out value="${product.productdesc}" />
 						</div>
