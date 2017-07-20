@@ -54,15 +54,15 @@ public class DbProduct {
 		}
 	}
 
-	/*
-	public static List<Product> samPost (){
+	
+	public static List<Product> getProducts (){
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "select p from Products p";
+		String qString = "select p from Product p";
 		
-		List<Product> posts = null;
+		List<Product>products = null;
 		try{
 			TypedQuery<Product> query = em.createQuery(qString,Product.class);
-			posts = query.getResultList();
+			products = query.getResultList();
 
 		}catch (Exception e){
 			e.printStackTrace();
@@ -70,9 +70,9 @@ public class DbProduct {
 		finally{
 				em.close();
 			}
-		return posts;
+		return products;
 	}
-	
+	/*
 	public static List<Product> postsofUser(long userid)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
