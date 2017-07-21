@@ -15,7 +15,7 @@ import java.util.Date;
 public class Samitem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int itemid;
 
 	private String list;

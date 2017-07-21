@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
 		if (DbUser.isValidUser(email,password)){
 			//add the valid user to the session
 			session.setAttribute("user", DbUser.getUserByEmail(email));
-			nextPage = "/home.jsp";
+			nextPage = "/Newsfeed";
 		}else{
 			//probably not necessary but you can clear all session variables just to be sure nobody can access them 
 			session.invalidate();

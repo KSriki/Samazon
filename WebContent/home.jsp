@@ -31,26 +31,33 @@ footer {
 }
 
 .col1 {
-    position: absolute;
-    left: 5px;
-    padding: 0px;  
+	position: absolute;
+	left: 5px;
+	padding: 0px;
 }
 
 .col2 {
-    position: absolute;
-    margin-left: 100px;
-    padding: 0px;
+	position: absolute;
+	margin-left: 100px;
+	padding: 0px;
 }
 
 .col3 {
-    margin-left: 200px;
-    padding: 0px;
+	margin-left: 200px;
+	padding: 0px;
 }
-
 </style>
 </head>
 <body>
-
+<c:if test="${AddCart != null}">
+	<script>
+		var sent = "${AddCart}";
+		
+		alert(sent);	
+		
+		
+	</script>
+	</c:if>
 	<div class="jumbotron">
 		<div class="container text-center">
 			<h1>Samazon Online Store</h1>
@@ -64,47 +71,52 @@ footer {
 	<div class="container">
 		<c:forEach var="product" items="${products}" varStatus="loop">
 
-	 
+
 			<c:if test="${loop.index % 3 == 0}">
 				<script>
 					console.log("${loop.index}")
 				</script>
 				<div class="row row-eq-height">
 			</c:if>
-		 
-		 <div class="col-md-4">
-	<!-- 
+
+			<div class="col-md-4">
+				<!-- 
 				<div>
 					<c:out value="${product.productname}" />
 				</div>
 		 -->
 				<div>
 					<a href="ProductServlet?productid=${product.productid}"><img
-						src="${product.image}" class="img-responsive" alt="Image"
-						></a>
-				<div class="col-md-4 inner">
-							<c:out value="${product.productdesc}" />
-						</div>
-						<div class="col-md-4 inner">
-							$
-							<c:out value="${product.price}" />
-						</div>
-						<div class="col-md-4 inner">
-							<c:out value="${product.productcount}" />
-							Count
-						</div>
+						src="${product.image}" class="img-responsive" alt="Image"></a>
+					<div class="col-md-4 inner">
+						<c:out value="${product.productdesc}" />
+					</div>
+					<div class="col-md-4 inner">
+						$
+						<c:out value="${product.price}" />
+					</div>
+					<div class="col-md-4 inner">
+						<c:out value="${product.productcount}" />
+						Count
+					</div>
+
+					<a href="EditCart?list='list'&Product=${product.productid}"
+						class="btn btn-info btn-lg"> <span
+						class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart
+					</a>
 
 
 				</div>
 
 
 			</div>
-			 <c:if test="${loop.index % 3 == 0 && loop.index != 0}"></div>
-			</c:if> 
+			<c:if test="${loop.index % 3 == 0 && loop.index != 0}">
+	</div>
+	</c:if>
 	</c:forEach>
 	</div>
 
-<!-- 
+	<!-- 
 	<footer class="container-fluid text-center">
 	<p>Online Store Copyright</p>
 	<form class="form-inline">

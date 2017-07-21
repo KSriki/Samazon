@@ -23,15 +23,25 @@
 				<li><a href="#">Contact</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						<c:if test="${user != null }">
+				<li><a href="#"> <c:if test="${user != null }">
 							<c:out value="${user.username}" />
 						</c:if> <c:if test="${user == null }">
 							<a href="login.jsp"> Your Account </a>
-				</c:if> </a></li>
+						</c:if>
+				</a></li>
 				<li><a href="MyCartServlet"><span
 						class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 			</ul>
 		</div>
+		<form class="navbar-form navbar-right" role="search" action="Newsfeed"
+			method="get">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search"
+					name="searchtext">
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
 	</div>
+
+
 </nav>

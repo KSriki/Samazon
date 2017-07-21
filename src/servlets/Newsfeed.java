@@ -59,7 +59,7 @@ public class Newsfeed extends HttpServlet {
 		HttpSession session = request.getSession();
 //		if (session.getAttribute("user")==null){
 //			//http://stackoverflow.com/questions/13638446/checking-servlet-session-attribute-value-in-jsp-file
-//			nextURL = "/login.jsp";
+//			nesxtURL = "/login.jsp";
 //			session.invalidate();
 //			response.sendRedirect(request.getContextPath() + nextURL);
 //		    return;//return prevents an error
@@ -68,7 +68,11 @@ public class Newsfeed extends HttpServlet {
 		//get posts based on parameters; if no parameters then get all posts
 		List<Product> products = null;
 		//userid not empty, get specific user posts
-//		if (request.getParameter("userid")!=null){
+		
+		if (request.getParameter("list")!=null){
+			
+			
+		}
 //			filterByUserID = Integer.parseInt(request.getParameter("userid"));
 //			posts = DbProduct.postsofUser(filterByUserID);
 //			//get posts with search text similiar to this
