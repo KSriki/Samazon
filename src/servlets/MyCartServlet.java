@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import util.DbItems;
 import util.DbUser;
 
 /**
@@ -42,6 +43,10 @@ public class MyCartServlet extends HttpServlet {
 	return;//return prevents an error; Don't believe me? Take it out.
 		}else{
 			nextURL = "/shoppingCart.jsp";
+			session.setAttribute("cartitem", DbItems.getCartitem());
+			
+			
+			
 			response.sendRedirect(request.getContextPath() + nextURL);
 		}
 	}

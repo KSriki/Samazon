@@ -15,7 +15,7 @@
 <jsp:include page="navbar.jsp"/>
 
 
-<c:forEach var="samitem" items="${samitem}">
+<c:forEach var="samitem" items="${cartitem}">
 
 							quantity <c:out value="${samitem.quantity}" /><br/>
 							
