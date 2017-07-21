@@ -40,6 +40,9 @@ public class MyCartServlet extends HttpServlet {
 				nextURL = "/login.jsp";
 				response.sendRedirect(request.getContextPath() + nextURL);
 	return;//return prevents an error; Don't believe me? Take it out.
+		}else{
+			nextURL = "/shoppingCart.jsp";
+			response.sendRedirect(request.getContextPath() + nextURL);
 		}
 	}
 
