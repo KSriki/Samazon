@@ -17,11 +17,14 @@
 
 <c:forEach var="samitem" items="${cartitem}">
 
+							user <c:out value="${samitem.samuser.useremail}" /> <br />
+							
+							
+							purchase date <c:out value="${samitem.purchasedate }" /> <br />
+
 							quantity <c:out value="${samitem.quantity}" /><br/>
 							
 							price <c:out value="${samitem.price}" /><br/>
-							
-							product <c:out value="${samitem.product.desc}" /><br/>
 							
 							list <c:out value="${samitem.list}" />
 				

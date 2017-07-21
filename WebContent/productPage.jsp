@@ -15,7 +15,17 @@
 
 <jsp:include page="navbar.jsp"/>
 
-<c:out value="${prod.image}" />
+<img src="<c:out value="${prod.image}"/>" /> <br />
+
+<c:out value="${prod.productname}"/> <br />
+
+
+
+<c:out value="${prod.productcount}" /> <br />
+
+<c:out value="${prod.price }" /> <br />
+
+<c:out value="${prod.productdesc}" /> <br />
 
 
 </body>

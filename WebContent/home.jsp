@@ -29,6 +29,24 @@ footer {
 	background-color: #f2f2f2;
 	padding: 25px;
 }
+
+.col1 {
+    position: absolute;
+    left: 5px;
+    padding: 0px;  
+}
+
+.col2 {
+    position: absolute;
+    margin-left: 100px;
+    padding: 0px;
+}
+
+.col3 {
+    margin-left: 200px;
+    padding: 0px;
+}
+
 </style>
 </head>
 <body>
@@ -40,40 +58,53 @@ footer {
 		</div>
 	</div>
 
-	<jsp:include page="navbar.jsp"/>
+	<jsp:include page="navbar.jsp" />
 
 
-	<div class="container" >
-		<c:forEach var="product" items="${products}">
+	<div class="container">
+		<c:forEach var="product" items="${products}" varStatus="loop">
 
-			<div class="col-md-4" >
-				<div class="panel panel-primary" >
-					<div class="panel-heading " >
-						<c:out value="${product.productname}" />
-					</div>
-					<div class="panel-body" >
-						<a href="ProductServlet?productid=${product.productid}"><img src="${product.image}" class="img-responsive" alt="Image"></a>
-						<div class="col-md-4 inner">
+	 
+			<c:if test="${loop.index % 3 == 0}">
+				<script>
+					console.log("${loop.index}")
+				</script>
+				<div class="row row-eq-height">
+			</c:if>
+		 
+		 <div class="col-md-4">
+	<!-- 
+				<div>
+					<c:out value="${product.productname}" />
+				</div>
+		 -->
+				<div>
+					<a href="ProductServlet?productid=${product.productid}"><img
+						src="${product.image}" class="img-responsive" alt="Image"
+						></a>
+				<div class="col-md-4 inner">
 							<c:out value="${product.productdesc}" />
 						</div>
 						<div class="col-md-4 inner">
-							$<c:out value="${product.price}" />
+							$
+							<c:out value="${product.price}" />
 						</div>
 						<div class="col-md-4 inner">
-							<c:out value="${product.productcount}" /> Count
+							<c:out value="${product.productcount}" />
+							Count
 						</div>
 
 
-
-					</div>
 				</div>
 
-			</div>
 
-		</c:forEach>
+			</div>
+			 <c:if test="${loop.index % 3 == 0 && loop.index != 0}"></div>
+			</c:if> 
+	</c:forEach>
 	</div>
 
-
+<!-- 
 	<footer class="container-fluid text-center">
 	<p>Online Store Copyright</p>
 	<form class="form-inline">
@@ -82,6 +113,6 @@ footer {
 		<button type="button" class="btn btn-danger">Sign Up</button>
 	</form>
 	</footer>
-
+ -->
 </body>
 </html>

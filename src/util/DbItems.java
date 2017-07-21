@@ -57,13 +57,15 @@ public class DbItems {
 	}
 
 
-	public static List<Samitem> getCartitem (){
+	public static List<Samitem> getCartitem (int id){
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "select p from Samitem p";
-
+		String qString = "select p from Samitem p where p.samuser.samid = " + id + " and p.list='CART'";
+		
+		
 		List<Samitem>cartitem = null;
 		try{
 			TypedQuery<Samitem> query = em.createQuery(qString,Samitem.class);
+			
 			cartitem = query.getResultList();
 
 		}catch (Exception e){
@@ -75,13 +77,13 @@ public class DbItems {
 		return cartitem;
 	}
 
-	public static Samitem getCartitem(int pID)
+/*	public static Samitem getCartitem(int pID)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		Samitem cartitem = em.find(Samitem.class, pID);
 		return cartitem;		
 	}
-
+*/
 	/*
 		public static List<Product> postsofUser(long userid)
 		{
