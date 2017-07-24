@@ -14,23 +14,39 @@
 
 <jsp:include page="navbar.jsp"/>
 
-
+<table style="border:double;">
 <c:forEach var="samitem" items="${cartitem}">
 
+							<tr>
+							<td>
 							user <c:out value="${samitem.samuser.useremail}" /> <br />
 							
+							</td>
 							
+							<td>
 							purchase date <c:out value="${samitem.purchasedate }" /> <br />
 
+							</td>
+							
+							<td>
 							quantity <c:out value="${samitem.quantity}" /><br/>
 							
+							</td>
+							
+							<td>
 							price <c:out value="${samitem.price}" /><br/>
 							
+							</td>
+							
+							<td>
 							list <c:out value="${samitem.list}" />
+							
+							</td>
+							</tr>
 				
 		</c:forEach>
 
-
+</table>
 
 </body>
 </html>

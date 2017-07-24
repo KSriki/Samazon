@@ -68,7 +68,7 @@ CREATE TABLE `samitems` (
   `QUANTITY` int(11) DEFAULT 0,
   `PRICE` float(11,2) DEFAULT 0.00,
   `SAMID` int(11) NOT NULL,
-  `LIST` varchar(10) DEFAULT 'cart',
+  `LIST` varchar(10) NOT NULL DEFAULT 'CART',
   PRIMARY KEY (`ITEMID`),
   FOREIGN KEY fk_samid(samid) references samuser(samid),
   FOREIGN KEY fk_productid(productid) references products(productid)
@@ -79,8 +79,7 @@ CREATE TABLE `samitems` (
 insert into samitems values (1,9,NULL,3,4.99,1,'CART');
 insert into samitems values (4,12,NULL,1,129.99,1,'CART');
 insert into samitems values (3,7,'2017-05-21',1,299.99,1,'PURC');
-
-delete from samitems where itemid = 3;
-
 insert into samitems values (2,4,NULL,2,179.99,2,'CART');
 select * from samitems;
+
+delete from samitems where itemid > 4;

@@ -49,14 +49,12 @@ footer {
 </style>
 </head>
 <body>
-<c:if test="${AddCart != null}">
-	<script>
-		var sent = "${AddCart}";
-		
-		alert(sent);	
-		
-		
-	</script>
+	<c:if test="${AddCart != null}">
+		<script>
+			var sent = "${AddCart}";
+
+			alert(sent);
+		</script>
 	</c:if>
 	<div class="jumbotron">
 		<div class="container text-center">
@@ -67,54 +65,51 @@ footer {
 
 	<jsp:include page="navbar.jsp" />
 
+	<c:forEach var="product" items="${products}" varStatus="loop">
+		<div class="row row-eq-height">
 
-	<div class="container">
-		<c:forEach var="product" items="${products}" varStatus="loop">
+			<div class="container">
 
-
-			<c:if test="${loop.index % 3 == 0}">
-				<script>
-					console.log("${loop.index}")
-				</script>
-				<div class="row row-eq-height">
-			</c:if>
-
-			<div class="col-md-4">
-				<!-- 
-				<div>
-					<c:out value="${product.productname}" />
-				</div>
-		 -->
-				<div>
+				<div class="col-md-3 inner">
 					<a href="ProductServlet?productid=${product.productid}"><img
 						src="${product.image}" class="img-responsive" alt="Image"></a>
-					<div class="col-md-4 inner">
-						<c:out value="${product.productdesc}" />
-					</div>
-					<div class="col-md-4 inner">
-						$
-						<c:out value="${product.price}" />
-					</div>
-					<div class="col-md-4 inner">
-						<c:out value="${product.productcount}" />
-						Count
-					</div>
 
-					<a href="EditCart?list='list'&Product=${product.productid}"
-						class="btn btn-info btn-lg"> <span
-						class="glyphicon glyphicon-shopping-cart"></span> Add to Shopping Cart
-					</a>
+				</div>
+				<div class="col-md-3 inner">
+					$
+					<c:out value="${product.price}" />
+				</div>
+				<div class="col-md-3 inner">
+					<c:out value="${product.productcount}" />
+					Count
+				</div>
+
+				<div class="col-md-3 inner">
+
+				
+					
+					<form action="EditCart" method="post">
+					
+						Quantity: <input type="number" value="1" name="Quantity" />
+								<input type="hidden" name="productname" value="${product.productid}" />
+									<input type="hidden" name="list" value="CART" />
+								<input type="submit" class="glyphicon glyphicon-shopping-cart" value="Add to Cart"> <span
+						class="glyphicon glyphicon-shopping-cart"></span> </input>
+			
+					</form>
+					
 
 
 				</div>
 
-
 			</div>
-			<c:if test="${loop.index % 3 == 0 && loop.index != 0}">
-	</div>
-	</c:if>
+
+
+
+
+		</div>
+
 	</c:forEach>
-	</div>
 
 	<!-- 
 	<footer class="container-fluid text-center">

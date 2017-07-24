@@ -39,10 +39,10 @@ public class EditCart extends HttpServlet {
 		
 		//get and check current user for login
 		//Samuser s = 
-		String typeoflist = (String) request.getAttribute("list");
-		
+		String typeoflist = (String) request.getParameter("list");
+		//System.out.println(typeoflist);
 		//the product id
-		int aP = Integer.parseInt(request.getParameter("Product"));
+		int aP = Integer.parseInt(request.getParameter("productname"));
 		Product newCartItem = DbProduct.getProduct(aP);
 		String nextURL = "/error.jsp";
 		//int userid = Integer.parseInt(request.getParameter("userid"));
@@ -60,17 +60,19 @@ public class EditCart extends HttpServlet {
 		Samitem toAdd = new Samitem();
 		toAdd.setList(typeoflist);
 		toAdd.setProduct(newCartItem);
+		toAdd.setQuantity(Integer.parseInt(request.getParameter("Quantity")));
 		toAdd.setPrice(newCartItem.getPrice());
-		Date now = new Date();
-		toAdd.setPurchasedate(now);
-		toAdd.setQuantity(1);   					//need to allow in form the quantity. So form vs GET 
+//	
+//		Date now = new Date();
+//		toAdd.setPurchasedate(now);
+	 					//need to allow in form the quantity. So form vs GET 
 		toAdd.setSamuser(thisUser);
 		
 		DbItems.insert(toAdd);
 		request.setAttribute("AddCart", newCartItem.getProductname() + " added to cart");
-		nextURL = "/home.jsp";
-		System.out.println(request.getAttribute("AddCart"));
-		response.sendRedirect(request.getContextPath() + nextURL);
+		nextURL = "/Newsfeed";
+		//System.out.println(request.getAttribute("AddCart"));
+		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 	}
 
 	/**

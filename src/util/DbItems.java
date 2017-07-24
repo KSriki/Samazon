@@ -19,6 +19,7 @@ public class DbItems {
 		try {
 			trans.begin();
 			em.persist(cartitem);
+			em.flush();
 			trans.commit();
 		} catch (Exception e) {
 			trans.rollback();
