@@ -49,7 +49,7 @@ public class MyCartServlet extends HttpServlet {
 		//	System.out.println(sam.getSamid());
 				
 				
-			session.setAttribute("cartitem", DbItems.getCartitem(sam.getSamid()));
+			session.setAttribute("cartitem", DbItems.getCartitems(sam.getSamid()));
 			
 			
 			

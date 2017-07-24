@@ -58,7 +58,7 @@ public class DbItems {
 	}
 
 
-	public static List<Samitem> getCartitem (int id){
+	public static List<Samitem> getCartitems (int id){
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		String qString = "select p from Samitem p where p.samuser.samid = " + id + " and p.list='CART'";
 		
