@@ -78,6 +78,27 @@ public class DbItems {
 		return cartitem;
 	}
 
+	public static Samitem getItem (int id){
+		EntityManager em = DbUtil.getEmFactory().createEntityManager();
+		String qString = "select p from Samitem p where p.itemid = " + id + " and p.list='CART'";
+		
+		
+		Samitem cartitem = null;
+		try{
+			TypedQuery<Samitem> query = em.createQuery(qString,Samitem.class);
+			
+			cartitem = query.getSingleResult();
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			em.close();
+		}
+		return cartitem;
+	}
+	
+	
 /*	public static Samitem getCartitem(int pID)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();

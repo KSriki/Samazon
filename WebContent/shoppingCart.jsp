@@ -14,7 +14,7 @@
 
 <jsp:include page="navbar.jsp"/>
 
-<table style="border:double;">
+<table style="border:1;">
 <c:forEach var="samitem" items="${cartitem}">
 
 							<tr>
@@ -42,6 +42,11 @@
 							list <c:out value="${samitem.list}" />
 							
 							</td>
+							
+							<td>
+							<a href="DeleteServlet?id=${samitem.itemid}" >Remove from Cart</a>
+							</td>
+							
 							</tr>
 				
 		</c:forEach>
