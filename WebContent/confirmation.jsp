@@ -16,7 +16,7 @@
 
 	<jsp:include page="navbar.jsp" />
 	<c:out value="${total}"/>
-	<c:out value="${user.}"/>
+	<c:out value="${user.address}"/>
 
 </body>
 </html>

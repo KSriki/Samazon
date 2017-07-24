@@ -47,6 +47,8 @@
 		</c:forEach>
 
 </table>
+	<br />
 
+	<a href="ConfirmationServlet" class="btn btn-success">Checkout</a> 
 </body>
 </html>
