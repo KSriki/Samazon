@@ -3,7 +3,7 @@ create database samazon;
 use samazon;
 
 
-DROP TABLE IF EXISTS `products`;
+DROP TABLE`products`;
 
 CREATE TABLE `products` (
   `PRODUCTID` int(11) NOT NULL AUTO_INCREMENT,

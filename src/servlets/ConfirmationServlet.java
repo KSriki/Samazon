@@ -81,6 +81,19 @@ return;//return prevents an error; Don't believe me? Take it out.
 		System.out.println(sam);
 		System.out.println(total);
 		
+	
+		float shipping = 0.15f;
+		
+		if (total >= 50.00){
+			shipping = 0 ;
+		}
+		
+		total = (total * shipping + total);
+
+
+		
+		
+		
 		request.setAttribute("total", total);
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 

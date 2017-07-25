@@ -10,50 +10,119 @@
 <title>My Shopping Cart</title>
 </head>
 <body>
-<jsp:include page="include.jsp" />
+	<jsp:include page="include.jsp" />
 
-<jsp:include page="navbar.jsp"/>
+	<jsp:include page="navbar.jsp" />
 
-<table style="border:1;">
-<c:forEach var="samitem" items="${cartitem}">
+	<table style="border: 1;">
+		<div class="container">
+			<div class="row">
+				<br>
+				<div class="col-md-12">
+					<div
+						class="col-md-4 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
+						<!--REVIEW ORDER-->
+						<div class="panel panel-default">
+							<div class="panel-heading text-center">
+								<h4>Review Order</h4>
+							</div>
+							<div class="panel-body">
+								<div class="col-md-12">
+									<strong>Subtotal (# item)</strong>
+									<div class="pull-right">
+										<span>$</span><span>200.00</span>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<strong>Tax</strong>
+									<div class="pull-right">
+										<span>$</span><span>200.00</span>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<small>Shipping</small>
+									<div class="pull-right">
+										<span>-</span>
+									</div>
+									<hr>
+								</div>
+								<div class="col-md-12">
+									<strong>Order Total</strong>
+									<div class="pull-right">
+										<span>$</span><span>150.00</span>
+									</div>
+									<hr>
+								</div>
 
-							<tr>
-							<td>
-							user <c:out value="${samitem.samuser.useremail}" /> <br />
-							
-							</td>
-							
-							<td>
-							purchase date <c:out value="${samitem.purchasedate }" /> <br />
+								<button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
 
-							</td>
-							
-							<td>
-							quantity <c:out value="${samitem.quantity}" /><br/>
-							
-							</td>
-							
-							<td>
-							price <c:out value="${samitem.price}" /><br/>
-							
-							</td>
-							
-							<td>
-							list <c:out value="${samitem.list}" />
-							
-							</td>
-							
-							<td>
-							<a href="DeleteServlet?id=${samitem.itemid}" >Remove from Cart</a>
-							</td>
-							
-							</tr>
-				
-		</c:forEach>
+							</div>
 
-</table>
+						</div>
+						<!--REVIEW ORDER END-->
+					</div>
+					<div
+						class="col-md-8 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
+						<!--SHIPPING METHOD-->
+						<div class="panel panel-default">
+							<div class="panel-heading text-center">
+								<h4>Current Cart</h4>
+							</div>
+							<div class="panel-body">
+								<table class="table borderless">
+									<thead>
+										<tr>
+											<td><strong>Your Cart: # item</strong></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- foreach ($order->lineItems as $line) or some such thing here -->
+										<c:forEach var="samitem" items="${cartitem}">
+											<tr>
+												<td class="col-md-4">
+													<div class="media">
+														<a class="thumbnail pull-left" href="#"> <img
+															class="media-object" src="${samitem.product.image}"
+															style="width: 72px; height: 72px;">
+														</a>
+														<div class="media-body">
+															<h5 class="media-heading"><c:out value="${samitem.product.productname}"  /></h5>
+															<h5 class="media-heading"><c:out value="${samitem.product.productdesc}"  /></h5>
+														</div>
+													</div>
+												</td>
+												<td class="col-md-2">
+													<c:out value="${samitem.price}" />
+												</td>
+												<td class="col-md-2">
+												<c:out value="${samitem.quantity}" />
+												</td>
+												<td class="col-md-2">
+												<c:out value="${samitem.price * samitem.quantity}" />
+												</td>
+												<td class="col-md-2"><button type="button"
+														class="btn btn-danger"
+														onclick="location.href='DeleteServlet?id=${samitem.itemid}';">Remove</button></td>
+											</tr>
+
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--SHIPPING METHOD END-->
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</table>
 	<br />
 
-	<a href="ConfirmationServlet" class="btn btn-success">Checkout</a> 
+	<a href="ConfirmationServlet" class="btn btn-success">Checkout</a>
 </body>
 </html>
