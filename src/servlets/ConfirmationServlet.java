@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -68,13 +69,17 @@ return;//return prevents an error; Don't believe me? Take it out.
 		List<Samitem> mycart = DbItems.getCartitems(sam.getSamid());
 	
 		float total = 0;
-		
+		Date today = new Date();
 		System.out.println(total);
 		for (Samitem item : mycart){
 			float price = item.getPrice();
 			int quantity = item.getQuantity();
-			float subtotal;
-		
+			float subtotal;	
+			
+			item.setPurchasedate(today);
+			item.setList("PURC");
+			DbItems.update(item);
+			
 			subtotal = price * quantity;
 			total = total + subtotal;
 		}
