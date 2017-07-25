@@ -82,4 +82,7 @@ insert into samitems values (3,7,'2017-05-21',1,299.99,1,'PURC');
 insert into samitems values (2,4,NULL,2,179.99,2,'CART');
 select * from samitems;
 
+select * from Samitems p inner join Samuser b on p.samid = b.samid inner join products d on d.productid = p.productid where p.samid = 1 and p.list='PURC' and d.productname like 'Beats Headphones by Dr. Dre';
+
+
 delete from samitems where itemid > 4;

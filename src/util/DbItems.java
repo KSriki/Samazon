@@ -98,6 +98,26 @@ public class DbItems {
 		return cartitem;
 	}
 	
+	public static List<Samitem> searchPurchased (int id, String search){
+		EntityManager em = DbUtil.getEmFactory().createEntityManager();
+		String qString = "select p from Samitem p where p.samuser.samid = " + id + " and p.list='PURC' and p.product.productname like :search order by p.purchasedate desc";
+		
+		
+		List<Samitem>cartitem = null;
+		try{
+			TypedQuery<Samitem> query = em.createQuery(qString,Samitem.class);
+			query.setParameter("search","%" + search + "%");
+			cartitem = query.getResultList();
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			em.close();
+		}
+		return cartitem;
+	}
+	
 	
 /*	public static Samitem getCartitem(int pID)
 	{

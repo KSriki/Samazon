@@ -85,11 +85,12 @@ public class Newsfeed extends HttpServlet {
 		//userid not empty, get specific user posts
 
 		//simple search
+		System.out.println(searchtype);
 		if(searchtype != null && searchtext != null){
 			
-			if(searchtype.equals("all"))
+			if(searchtype.equals("all")){
 				products = DbProduct.searchProducts(searchtext);
-			
+			}
 				
 		}
 		else{
