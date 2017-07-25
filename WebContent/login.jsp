@@ -7,6 +7,8 @@
 <title>Login Page</title>
 </head>
 <body>
+<jsp:include page="include.jsp"/>
+<jsp:include page="navbar.jsp"/>
 
 
 <form action= "LoginServlet" method="post">
@@ -15,6 +17,7 @@ password: <input type="password" name="password" ><br>
 <input type="submit" value="Log In"></input>
 <input type="reset" value="Reset"></input>
 </form>
+
 
 </body>
 </html>

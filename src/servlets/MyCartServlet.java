@@ -41,7 +41,7 @@ public class MyCartServlet extends HttpServlet {
 				//http://stackoverflow.com/questions/13638446/checking-servlet-session-attribute-value-in-jsp-file
 				nextURL = "/login.jsp";
 				response.sendRedirect(request.getContextPath() + nextURL);
-	return;//return prevents an error; Don't believe me? Take it out.
+				return;//return prevents an error; Don't believe me? Take it out.
 		}else{
 			nextURL = "/shoppingCart.jsp";
 			Samuser sam = (Samuser) session.getAttribute("user");

@@ -119,24 +119,24 @@ public class DbProduct {
 			}
 		return userposts;	
 	}
-	
-	public static List<Bhpost> searchPosts (String search)
+	*/
+	public static List<Product> searchProducts (String search)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		List<Bhpost> searchposts = null;
-		String qString = "select b from Bhpost b "
-				+ "where b.posttext like :search";
+		List<Product> searchProd = null;
+		String qString = "select b from Product b "
+				+ "where b.productname like :search";
 		
 		try{
-			TypedQuery<Bhpost> query = em.createQuery(qString,Bhpost.class);
+			TypedQuery<Product> query = em.createQuery(qString,Product.class);
 			query.setParameter("search", "%" + search + "%");
-			searchposts = query.getResultList();
+			searchProd = query.getResultList();
 		}catch (Exception e){
 			e.printStackTrace();
 		}finally{
 			em.close();
-		}return searchposts;
+		}return searchProd;
 	}
-	*/
+	
 	
 }

@@ -72,8 +72,8 @@ footer {
 
 				<div class="col-md-3 inner">
 					<a href="ProductServlet?productid=${product.productid}"><img
-						src="${product.image}" class="img-responsive" alt="Image"></a>
-
+						src="${product.image}" class="img-responsive" alt="Image" style="height:200px"></a>
+					<c:out value="${product.productname}" />
 				</div>
 				<div class="col-md-3 inner">
 					$
@@ -90,14 +90,33 @@ footer {
 					
 					<form action="EditCart" method="post">
 					
-						Quantity: <input type="number" value="1" name="Quantity" />
+						Quantity: <input type="number" value="1" name="Quantity" min="0" />
 								<input type="hidden" name="productname" value="${product.productid}" />
 									<input type="hidden" name="list" value="CART" />
 								<input type="submit" class="glyphicon glyphicon-shopping-cart" value="Add to Cart"> <span
 						class="glyphicon glyphicon-shopping-cart"></span> </input>
 			
 					</form>
+					<script>
 					
+					// Select your input element.
+					var numbers = document.getElementsByName('Quantity');
+
+					for(i = 0; i < numbers.length; i++){
+						number = numbers[i]
+						// Listen for input event on numInput.
+						number.onkeydown = function(e) {
+						    if(!((e.keyCode > 95 && e.keyCode < 106)
+						      || (e.keyCode > 47 && e.keyCode < 58) 
+						      || e.keyCode == 8)) {
+						        return false;
+						    }
+						}	
+					}
+					
+					
+					
+					</script>
 
 
 				</div>

@@ -45,6 +45,16 @@ public class EditCart extends HttpServlet {
 		int aP = Integer.parseInt(request.getParameter("productname"));
 		Product newCartItem = DbProduct.getProduct(aP);
 		String nextURL = "/error.jsp";
+		if(request.getParameter("Quantity").isEmpty()){
+			request.setAttribute("AddCart", "Please enter the quantity of the item you wish to purchase!");
+			nextURL = "/Newsfeed";
+			//System.out.println(request.getAttribute("AddCart"));
+			getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+			return;
+		}
+		
+		
+
 		//int userid = Integer.parseInt(request.getParameter("userid"));
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user")==null){
@@ -62,11 +72,14 @@ public class EditCart extends HttpServlet {
 		toAdd.setProduct(newCartItem);
 		toAdd.setQuantity(Integer.parseInt(request.getParameter("Quantity")));
 		toAdd.setPrice(newCartItem.getPrice());
-//	
+
 //		Date now = new Date();
 //		toAdd.setPurchasedate(now);
 	 					//need to allow in form the quantity. So form vs GET 
 		toAdd.setSamuser(thisUser);
+		
+		
+	//	if(DbItems.getItem())
 		
 		DbItems.insert(toAdd);
 		request.setAttribute("AddCart", newCartItem.getProductname() + " added to cart");
