@@ -59,7 +59,7 @@ footer {
 	<div class="jumbotron">
 		<div class="container text-center">
 			<h1>Samazon Online Store</h1>
-			<p>Mission, Vission & Values</p>
+			<p>Mission, Vision & Values</p>
 		</div>
 	</div>
 

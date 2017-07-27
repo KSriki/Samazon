@@ -118,6 +118,24 @@ public class DbItems {
 		return cartitem;
 	}
 	
+	public static List<Samitem> getPurchased (int id){
+		EntityManager em = DbUtil.getEmFactory().createEntityManager();
+		String qString = "select p from Samitem p where p.samuser.samid = " + id + " and p.list='PURC' order by p.purchasedate desc";
+		
+		
+		List<Samitem>cartitem = null;
+		try{
+			TypedQuery<Samitem> query = em.createQuery(qString,Samitem.class);
+			cartitem = query.getResultList();
+
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			em.close();
+		}
+		return cartitem;
+	}
 	
 /*	public static Samitem getCartitem(int pID)
 	{
